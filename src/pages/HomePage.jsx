@@ -1,6 +1,6 @@
 import { getPopularFilms } from "services/themoviedbApi";
 import { useState, useEffect } from "react";
-import { Link, } from "react-router-dom";
+import { HomePageTemplate } from "components/HomePageTemplate";
 
 export const HomePage = () => {
    
@@ -17,15 +17,6 @@ export const HomePage = () => {
     getFilms();
    }, []);
    return (
-   <>
-      <h2>Trending today</h2>
-      <ul>
-         {films.map(({ id, title })=> (
-            <li key={id}>
-               <Link to={`movies/${id}`}>{title}</Link>
-            </li>
-         ))}
-      </ul>
-   </>
+      <HomePageTemplate films={films}/>
    )
 }

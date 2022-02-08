@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { SearchForm } from "components/SearchForm";
 import { searchFilmsByName } from "services/themoviedbApi";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { MoviesPageTemplate } from "components/MoviesPageTemplate";
 
 export const MoviesPage = () => {
    const [searchParams, setSearchParams] = useSearchParams();
@@ -25,15 +26,7 @@ export const MoviesPage = () => {
       <>
          <SearchForm onSubmit={onSubmit}/>
          {films && 
-         <ul>
-            {
-               films.map(({ id, title}) => (
-                  <li key={id}>
-                     <Link to={`${id}`} >{title}</Link>
-                  </li>
-               ))
-            }
-         </ul>}
+         <MoviesPageTemplate films={films}/>}
       </>
          
    )
