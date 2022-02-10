@@ -1,12 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { SEARCH_IMG_URL } from "constance";
 
 export const MoviesPageTemplate = ({ films })=> {
-    return (
+   const location = useLocation();
+       return (
         <ul>
             {
-               films.map(({ id, title}) => (
+               films.map(({ id, title, poster_path }) => (
                   <li key={id}>
-                     <Link to={`${id}`} >{title}</Link>
+                     <Link to={`${id}`} state={{from: location}}>
+                        <img src={`${SEARCH_IMG_URL}/${poster_path}`} alt={title} />
+                        <h2>{title}</h2>
+                     </Link>
                   </li>
                ))
             }

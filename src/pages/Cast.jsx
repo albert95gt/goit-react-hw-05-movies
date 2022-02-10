@@ -5,7 +5,7 @@ import { MovieCastTemplate } from "components/MovieCastTemplate";
 
 export const Cast = () => {
     const { movieId } = useParams();
-    const [cast, setCast] = useState(null);
+    const [cast, setCast] = useState([]);
     useEffect(() => {
         const getFilmCast = async () => {
             const response = await getFilmCastById(movieId);
@@ -17,7 +17,11 @@ export const Cast = () => {
 
     return (
         <>
-            {cast && <MovieCastTemplate cast={cast}/>}
+            {cast.length ? 
+            <MovieCastTemplate cast={cast}/>
+            :
+            <p>We dont have any cast information for this movie.</p>    
+            }
         </>
     )
         

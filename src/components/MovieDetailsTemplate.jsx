@@ -12,6 +12,6 @@ import { SEARCH_IMG_URL } from "constance";
                     <p>{overview}</p>
                 <h4>Genres</h4>
                     <p>{filmGenres}</p>
-            </article>
+        </article>
     )
 }
