@@ -1,12 +1,5 @@
 import axios from 'axios';
-import {
-  API_KEY,
-  POPULAR_FILM_FETCH,
-  SEARCH__MOVIE,
-  FILM,
-  FILM_CAST,
-  FILM_REVIEWS,
-} from '../constance';
+import { API_KEY, POPULAR_FILM_FETCH, SEARCH__MOVIE, FILM } from '../constance';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
@@ -23,20 +16,8 @@ export const searchFilmsByName = async name => {
 };
 
 export const getFilmDetailsById = async id => {
-  const response = await axios.get(`${FILM}/${id}?api_key=${API_KEY}`);
-  return response.data;
-};
-
-export const getFilmCastById = async id => {
   const response = await axios.get(
-    `${FILM}/${id}/${FILM_CAST}?api_key=${API_KEY}`
-  );
-  return response.data;
-};
-
-export const getFilmReviewsById = async id => {
-  const response = await axios.get(
-    `${FILM}/${id}/${FILM_REVIEWS}?api_key=${API_KEY}`
+    `${FILM}/${id}?api_key=${API_KEY}&append_to_response=credits,reviews`
   );
   return response.data;
 };

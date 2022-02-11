@@ -1,15 +1,22 @@
-import { useEffect, useState } from "react";
-import { useParams, NavLink, Outlet, useLocation } from "react-router-dom";
+import { useEffect, useState, Suspense } from "react";
+import { createChunk } from "helpers/createChunk";
+import { useParams, Routes, Route } from "react-router-dom";
 import { getFilmDetailsById } from "services/themoviedbApi";
 import { MovieDetailsTemplate } from "components/MovieDetailsTemplate";
 import { BackBtn } from "components/BackBtn";
-import { BounceLoader } from "react-spinners";
+import { BounceLoader, DotLoader } from "react-spinners";
+import { ErrorMessage } from "components/ErrorMessage";
+
+const Cast = createChunk('Cast');
+const Reviews = createChunk('Reviews');
 
 export const MovieDetailsPage = () => {
-   const [loading, setLoading] = useState(false);
-    const location = useLocation();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const { movieId } = useParams();
     const [filmDetails, setFilmDetails] = useState(null);
+    const [cast, setCast] = useState([]);
+    const [reviews, setReviews] = useState([]);
     useEffect(() => {
         setLoading(true);
         const getFilmDetails = async () => {
@@ -22,10 +29,15 @@ export const MovieDetailsPage = () => {
                     vote_average,
                     poster_path,
                     overview,
-                    genres,} = response;
-                setFilmDetails({ id, title, release_date, vote_average, poster_path, overview, genres, });
+                    genres,
+                    credits:{ cast },
+                    reviews:{ results},
+                } = response;
+                setFilmDetails({ id, title, release_date, vote_average, poster_path, overview, genres });
+                setCast(cast);
+                setReviews(results)
             } catch (error) {
-            alert(error.message);
+                setError(error.message);
             } finally {
             setLoading(false);
             }
@@ -37,17 +49,17 @@ export const MovieDetailsPage = () => {
     return (
        <>
         <BackBtn />
-
+        {error && <h2>{error}</h2>}
+        {loading && <BounceLoader color="#e24392"/>}
         {filmDetails && <MovieDetailsTemplate movie={filmDetails}/>}
-            {loading && <BounceLoader color="#e24392"/>}
-            <hr />
-            <p>Additional information</p>
-            <nav>
-                <NavLink to='cast' state={location.state}>Cast</NavLink> 
-                <NavLink to='reviews' state={location.state}>Reviews</NavLink> 
-            </nav>
-            <hr />
-            <Outlet/>
+
+        <Suspense fallback={<DotLoader color="#e24392"/>}>
+            <Routes>
+                <Route path="cast" element={cast.length ?<Cast cast={cast}/> : <ErrorMessage value={'cast information'}/>}/>
+                <Route path="reviews" element={reviews.length ?<Reviews reviews={reviews}/> : <ErrorMessage value={'reviews'}/>}/>
+            </Routes> 
+        </Suspense>
+
        </> 
     )
 }

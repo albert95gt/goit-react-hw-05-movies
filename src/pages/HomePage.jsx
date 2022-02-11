@@ -5,6 +5,7 @@ import { BounceLoader } from "react-spinners";
 
 export const HomePage = () => {
    const [loading, setLoading] = useState(false);
+   const [error, setError] = useState(null);
    const [films, setFilms] = useState([]);
    useEffect(() => {
     setLoading(true);  
@@ -13,15 +14,16 @@ export const HomePage = () => {
          const popularFilms = await getPopularFilms();
          setFilms(popularFilms.results);
       } catch (error) {
-         alert(error.message);
+         setError(error.message);
       } finally {
-    setLoading(false);  
+         setLoading(false);  
       }
     }
     getFilms();
    }, []);
    return (
-      <>
+      <> 
+         {error && <h2>{error}</h2>}
          <HomePageTemplate films={films}/>
          {loading && <BounceLoader color="#e24392"/>}
       </>

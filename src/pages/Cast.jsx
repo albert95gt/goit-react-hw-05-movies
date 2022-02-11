@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getFilmCastById } from "services/themoviedbApi";
-import { MovieCastTemplate } from "components/MovieCastTemplate";
+import { SEARCH_IMG_URL } from "constance";
 
-export const Cast = () => {
-    const { movieId } = useParams();
-    const [cast, setCast] = useState([]);
-    useEffect(() => {
-        const getFilmCast = async () => {
-            const response = await getFilmCastById(movieId);
-            const { cast } = response;
-            setCast(cast);
-        }
-        getFilmCast();
-    }, [movieId]);
-
+export const Cast = ({cast}) => {
     return (
-        <>
-            {cast.length ? 
-            <MovieCastTemplate cast={cast}/>
-            :
-            <p>We dont have any cast information for this movie.</p>    
-            }
-        </>
+        <ul>
+            { cast.map(({ id, profile_path, name, character}) => (
+                <li key={id}>
+                {profile_path && <img src={`${SEARCH_IMG_URL}/${profile_path}`} alt={name} />}
+                <p>Name: {name}</p>
+                <p>Character: {character}</p>
+                </li>
+            ))}
+        </ul>
     )
-        
-    
-    
-} 
+}
