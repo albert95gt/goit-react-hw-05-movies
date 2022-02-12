@@ -1,4 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
+import { BackBtnStyled } from "./BackBtn.styled";
+import { BsArrowLeft } from "react-icons/bs"
 
 export const BackBtn = () => {
     const location = useLocation();
@@ -7,6 +9,6 @@ export const BackBtn = () => {
         navigate(location?.state?.from ?? '/movies');
     } 
     return (
-        <button type="button" onClick={handleClick}>Go back</button>
+        <BackBtnStyled type="button" onClick={handleClick}><BsArrowLeft size='20px'/> Go back</BackBtnStyled>
     )
 }

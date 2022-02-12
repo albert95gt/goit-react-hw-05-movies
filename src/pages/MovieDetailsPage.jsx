@@ -2,10 +2,9 @@ import { useEffect, useState, Suspense } from "react";
 import { createChunk } from "helpers/createChunk";
 import { useParams, Routes, Route } from "react-router-dom";
 import { getFilmDetailsById } from "services/themoviedbApi";
-import { MovieDetailsTemplate } from "components/MovieDetailsTemplate";
-import { BackBtn } from "components/BackBtn";
+import { MovieDetailsTemplate } from "components/MovieDetailsTemplate/MovieDetailsTemplate";
 import { BounceLoader, DotLoader } from "react-spinners";
-import { ErrorMessage } from "components/ErrorMessage";
+import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
 
 const Cast = createChunk('Cast');
 const Reviews = createChunk('Reviews');
@@ -48,7 +47,6 @@ export const MovieDetailsPage = () => {
     
     return (
        <>
-        <BackBtn />
         {error && <h2>{error}</h2>}
         {loading && <BounceLoader color="#e24392"/>}
         {filmDetails && <MovieDetailsTemplate movie={filmDetails}/>}

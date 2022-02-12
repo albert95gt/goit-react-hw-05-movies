@@ -1,6 +1,6 @@
 import { getPopularFilms } from "services/themoviedbApi";
 import { useState, useEffect } from "react";
-import { HomePageTemplate } from "components/HomePageTemplate";
+import { HomePageTemplate } from "components/HomePageTemplate/HomePageTemplate";
 import { BounceLoader } from "react-spinners";
 
 export const HomePage = () => {

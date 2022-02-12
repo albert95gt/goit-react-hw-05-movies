@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { createChunk } from 'helpers/createChunk';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Layout } from '../Layout/Layout';
 
 
 

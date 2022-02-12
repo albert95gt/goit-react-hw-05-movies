@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { SearchForm } from "components/SearchForm";
+import { SearchForm } from "components/SearchForm/SearchForm";
 import { searchFilmsByName } from "services/themoviedbApi";
 import { useSearchParams } from "react-router-dom";
-import { MoviesPageTemplate } from "components/MoviesPageTemplate";
+import { MoviesPageTemplate } from "components/MoviesPageTemplate/MoviesPageTemplate";
 import toast, { Toaster } from 'react-hot-toast';
 import { BounceLoader } from "react-spinners";
 

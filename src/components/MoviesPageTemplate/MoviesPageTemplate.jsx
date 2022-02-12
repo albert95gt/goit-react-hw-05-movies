@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { SEARCH_IMG_URL } from "constance";
+import { DefaultImage } from "../DefaultImage/DefaultImage";
 
 export const MoviesPageTemplate = ({ films })=> {
    const location = useLocation();
@@ -9,7 +10,7 @@ export const MoviesPageTemplate = ({ films })=> {
                films.map(({ id, title, poster_path }) => (
                   <li key={id}>
                      <Link to={`${id}`} state={{from: location}}>
-                        <img src={`${SEARCH_IMG_URL}/${poster_path}`} alt={title} />
+                        {poster_path ? <img src={`${SEARCH_IMG_URL}/${poster_path}`} alt={title} /> : <DefaultImage/>}
                         <h2>{title}</h2>
                      </Link>
                   </li>
