@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/399.e323493d.chunk.js","mappings":"qLAEaA,E,OAAOC,GAAAA","sources":["pages/MoviesPage/MoviesPage.styled.jsx"],"sourcesContent":["import styled from 'styled-components';\n\nexport const Main = styled.main"],"names":["Main","styled"],"sourceRoot":""}
