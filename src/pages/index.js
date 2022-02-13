@@ -1,6 +1,5 @@
-export * from './HomePage';
-export * from './MoviesPage';
-export * from './MovieDetailsPage';
-export * from './Cast';
-export * from './Reviews';
-
+export * from './HomePage/HomePage';
+export * from './MoviesPage/MoviesPage';
+export * from './MovieDetailsPage/MovieDetailsPage';
+export * from './Cast/Cast';
+export * from './Reviews/Reviews';

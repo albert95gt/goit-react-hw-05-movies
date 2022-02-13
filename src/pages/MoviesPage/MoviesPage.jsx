@@ -5,12 +5,13 @@ import { useSearchParams } from "react-router-dom";
 import { MoviesPageTemplate } from "components/MoviesPageTemplate/MoviesPageTemplate";
 import toast, { Toaster } from 'react-hot-toast';
 import { BounceLoader } from "react-spinners";
+import { Main } from "components/Main/Main.styled";
 
 export const MoviesPage = () => {
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState(null);
    const [searchParams, setSearchParams] = useSearchParams();
-   const [films, setFilms] = useState([]);
+   const [films, setFilms] = useState(null);
 
    useEffect(() => {
 
@@ -47,7 +48,7 @@ export const MoviesPage = () => {
    }
    
    return (
-      <>
+      <Main>
          <Toaster toastOptions={{
             style: {
                background: '#e45b5b',
@@ -60,7 +61,7 @@ export const MoviesPage = () => {
          {error && <h2>{error}</h2>}
          {films && 
          <MoviesPageTemplate films={films}/>}
-      </>
+      </Main>
          
    )
 }

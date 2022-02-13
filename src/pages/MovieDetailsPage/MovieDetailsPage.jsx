@@ -5,6 +5,7 @@ import { getFilmDetailsById } from "services/themoviedbApi";
 import { MovieDetailsTemplate } from "components/MovieDetailsTemplate/MovieDetailsTemplate";
 import { BounceLoader, DotLoader } from "react-spinners";
 import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
+import { Main } from "components/Main/Main.styled";
 
 const Cast = createChunk('Cast');
 const Reviews = createChunk('Reviews');
@@ -46,7 +47,7 @@ export const MovieDetailsPage = () => {
     }, [movieId]);
     
     return (
-       <>
+       <Main>
         {error && <h2>{error}</h2>}
         {loading && <BounceLoader color="#e24392"/>}
         {filmDetails && <MovieDetailsTemplate movie={filmDetails}/>}
@@ -57,7 +58,7 @@ export const MovieDetailsPage = () => {
                 <Route path="reviews" element={reviews.length ?<Reviews reviews={reviews}/> : <ErrorMessage value={'reviews'}/>}/>
             </Routes> 
         </Suspense>
-
-       </> 
+        
+       </Main> 
     )
 }
