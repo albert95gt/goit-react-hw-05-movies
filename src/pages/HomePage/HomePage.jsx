@@ -1,7 +1,7 @@
 import { getPopularFilms } from "services/themoviedbApi";
 import { useState, useEffect } from "react";
 import { HomePageTemplate } from "components/HomePageTemplate/HomePageTemplate";
-import { BounceLoader } from "react-spinners";
+import { Spinner } from "components/Loader/Loader";
 import { Main } from "components/Main/Main.styled";
 
 export const HomePage = () => {
@@ -26,7 +26,7 @@ export const HomePage = () => {
       <Main> 
          {error && <h2>{error}</h2>}
          <HomePageTemplate films={films}/>
-         {loading && <BounceLoader color="#e24392"/>}
+         {loading && <Spinner color="#ec711f" />}
       </Main>
    )
 }

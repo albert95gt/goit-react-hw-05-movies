@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import { Form, Input, SearchBtn } from "./SearchForm.styled";
 
 export const SearchForm = ({ onSubmit }) => {
     const [searchValue, setSearchValue] = useState('');
@@ -14,9 +15,9 @@ export const SearchForm = ({ onSubmit }) => {
         setSearchValue('');
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="search films" value={searchValue} onChange={handleChange}/>
-            <button type="submit">Search</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <Input type="text" placeholder="Movies name" value={searchValue} onChange={handleChange}/>
+            <SearchBtn type="submit">Search</SearchBtn>
+        </Form>
     )
 }

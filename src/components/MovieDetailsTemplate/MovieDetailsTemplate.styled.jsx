@@ -2,21 +2,35 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Section = styled.section`
-  text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
 `;
 
 export const Article = styled.article`
-    
+
+  @media screen and (min-width: 768px){
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 `;
 
+export const DescContainer = styled.div`
+  @media screen and (min-width: 768px){
+    margin-left: 20px;  
+  }
+`;
+
+
 export const Img = styled.img`
-  /* margin-left: auto;
-  margin-right: auto; */
+ 
   width: 300px;
   height: 400px;
-  margin-bottom: 20px;  
+  
+  @media screen and (max-width: 767px){
+    margin-bottom: 20px;  
+  }
+  
 `;
 
 export const DefaultImg = styled.img`

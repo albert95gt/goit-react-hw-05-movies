@@ -3,7 +3,7 @@ import { createChunk } from "helpers/createChunk";
 import { useParams, Routes, Route } from "react-router-dom";
 import { getFilmDetailsById } from "services/themoviedbApi";
 import { MovieDetailsTemplate } from "components/MovieDetailsTemplate/MovieDetailsTemplate";
-import { BounceLoader, DotLoader } from "react-spinners";
+import { Spinner } from "components/Loader/Loader";
 import { ErrorMessage } from "components/ErrorMessage/ErrorMessage";
 import { Main } from "components/Main/Main.styled";
 
@@ -49,10 +49,10 @@ export const MovieDetailsPage = () => {
     return (
        <Main>
         {error && <h2>{error}</h2>}
-        {loading && <BounceLoader color="#e24392"/>}
+        {loading && <Spinner color="#ec711f"/>}
         {filmDetails && <MovieDetailsTemplate movie={filmDetails}/>}
 
-        <Suspense fallback={<DotLoader color="#e24392"/>}>
+        <Suspense fallback="Loading...">
             <Routes>
                 <Route path="cast" element={cast.length ?<Cast cast={cast}/> : <ErrorMessage value={'cast information'}/>}/>
                 <Route path="reviews" element={reviews.length ?<Reviews reviews={reviews}/> : <ErrorMessage value={'reviews'}/>}/>

@@ -38,6 +38,9 @@ export const Link = styled(NavLink)`
     :hover,
     :focus {
     transform: scale(1.1);
-    color: #883e0c;
     }
-`
+
+    @media screen and (min-width: 1440px) {
+        font-size: 24px;
+    }
+`;

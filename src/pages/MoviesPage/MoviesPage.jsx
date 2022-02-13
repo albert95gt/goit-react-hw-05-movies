@@ -49,7 +49,7 @@ export const MoviesPage = () => {
    
    return (
       <Main>
-         <Toaster toastOptions={{
+         <Toaster position="top-right" toastOptions={{
             style: {
                background: '#e45b5b',
                padding: '16px',
