@@ -3,8 +3,6 @@ import { createChunk } from 'helpers/createChunk';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from '../Layout/Layout';
 
-
-
 const HomePage = createChunk('HomePage');
 const MoviesPage = createChunk('MoviesPage');
 const MovieDetailsPage = createChunk('MovieDetailsPage');

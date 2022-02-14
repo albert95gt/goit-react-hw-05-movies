@@ -4,7 +4,7 @@ import { searchFilmsByName } from "services/themoviedbApi";
 import { useSearchParams } from "react-router-dom";
 import { MoviesPageTemplate } from "components/MoviesPageTemplate/MoviesPageTemplate";
 import toast, { Toaster } from 'react-hot-toast';
-import { BounceLoader } from "react-spinners";
+import { Spinner } from "components/Loader/Loader";
 import { Main } from "components/Main/Main.styled";
 
 export const MoviesPage = () => {
@@ -23,12 +23,13 @@ export const MoviesPage = () => {
 
      const searchFilms = async () => {
          try {
-            const films = await searchFilmsByName(name);
-            if (!films.results.length) {
+            const response = await searchFilmsByName(name);
+            if (!response.results.length) {
             toast.error('No result, please input a new search value!');
             return;
             }
-            setFilms(films.results);
+            const detectedFilms = response.results.map(({ id, title, poster_path, release_date })=> ({ id, title, poster_path, release_date }))
+            setFilms(detectedFilms);
          } catch (error) {
            setError(error.message);
         } finally {
@@ -57,7 +58,7 @@ export const MoviesPage = () => {
             },
          }}/>
          <SearchForm onSubmit={onSubmit}/>
-         {loading && <BounceLoader color="#e24392"/>}
+         {loading && <Spinner color="#ec711f"/>}
          {error && <h2>{error}</h2>}
          {films && 
          <MoviesPageTemplate films={films}/>}

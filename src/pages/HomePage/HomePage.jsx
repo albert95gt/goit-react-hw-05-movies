@@ -12,8 +12,10 @@ export const HomePage = () => {
     setLoading(true);  
     const getFilms = async () => {
       try {
-         const popularFilms = await getPopularFilms();
-         setFilms(popularFilms.results);
+         const response = await getPopularFilms();
+
+         const popularFilms = response.results.map(({id, title, poster_path}) => ({id, title, poster_path}))
+         setFilms(popularFilms);
       } catch (error) {
          setError(error.message);
       } finally {

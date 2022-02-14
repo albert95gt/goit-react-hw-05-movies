@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import img from '../../images/background.jpg'
 
 
 export const Header = styled.header`
     padding-top: 50px;
     padding-bottom: 50px;
-    background-color: #2b2b2b;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.644)),
-    url(${img});
-    background-size: cover;
-    object-fit: fill;
-    background-position: top;
-    background-repeat: no-repeat;
+    background: linear-gradient(#180101, #4e0d0d);
 `;
 
 export const Nav = styled.nav`

@@ -4,12 +4,10 @@ export const Section = styled.section`
     padding-bottom: 60px;
 `
 
-export const ReviewList = styled.ul`
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+export const ReviewItem = styled.li`
+    :not(:last-child){
+        margin-bottom: 10px;
+    }
 `;
 
 export const Author = styled.h4`

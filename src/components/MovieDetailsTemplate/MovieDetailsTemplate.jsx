@@ -4,6 +4,7 @@ import { Section, Article,  DescContainer, Img, DefaultImg, MovieTitle, Score, S
 import { Wrapper } from "components/Wrapper/Wrapper.styled";
 import { BackBtn } from "components/BackBtn/BackBtn";
 import DefaultPoster from "../../images/PosterNotAvailable.jpg";
+import PropTypes from 'prop-types';
 
  export const MovieDetailsTemplate = ({movie}) => {
     const location = useLocation();
@@ -39,4 +40,16 @@ import DefaultPoster from "../../images/PosterNotAvailable.jpg";
         </Section>
         
     )
+}
+
+MovieDetailsTemplate.propTypes = {
+    movie: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        release_date: PropTypes.string.isRequired,
+        vote_average: PropTypes.number.isRequired,
+        poster_path: PropTypes.string.isRequired,
+        overview: PropTypes.string.isRequired,
+        genres: PropTypes.arrayOf(PropTypes.shape({name: PropTypes.string.isRequired}).isRequired).isRequired,
+    }).isRequired,
 }

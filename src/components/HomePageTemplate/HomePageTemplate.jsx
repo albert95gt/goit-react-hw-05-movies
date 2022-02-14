@@ -3,6 +3,7 @@ import { SEARCH_IMG_URL } from "constance";
 import { HomePageTitle, Section, FilmList, FilmItem, FilmItemImg, DefaultImg, FilmItemTitle } from "./HomePageTemplate.styled";
 import { Wrapper } from "components/Wrapper";
 import DefaultPoster from "../../images/PosterNotAvailable.jpg";
+import PropTypes from "prop-types";
 
 export const HomePageTemplate = ({ films }) => {
     const location = useLocation();
@@ -25,4 +26,12 @@ export const HomePageTemplate = ({ films }) => {
         </Section>
         
     )
+}
+
+HomePageTemplate.propTypes = {
+    films: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        poster_path: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
 }

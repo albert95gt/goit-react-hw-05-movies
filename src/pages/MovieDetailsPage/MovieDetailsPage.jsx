@@ -34,8 +34,11 @@ export const MovieDetailsPage = () => {
                     reviews:{ results},
                 } = response;
                 setFilmDetails({ id, title, release_date, vote_average, poster_path, overview, genres });
-                setCast(cast);
-                setReviews(results)
+                const actors = cast.map(({id, profile_path, name, character}) => ({ id, profile_path, name, character }));
+                setCast(actors);
+
+                const reviewResults = results.map(({ id, author, content }) => ({ id, author, content }));
+                setReviews(reviewResults);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -52,7 +55,7 @@ export const MovieDetailsPage = () => {
         {loading && <Spinner color="#ec711f"/>}
         {filmDetails && <MovieDetailsTemplate movie={filmDetails}/>}
 
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<Spinner color="#ec711f"/>}>
             <Routes>
                 <Route path="cast" element={cast.length ?<Cast cast={cast}/> : <ErrorMessage value={'cast information'}/>}/>
                 <Route path="reviews" element={reviews.length ?<Reviews reviews={reviews}/> : <ErrorMessage value={'reviews'}/>}/>

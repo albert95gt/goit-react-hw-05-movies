@@ -2,8 +2,9 @@ import { SEARCH_IMG_URL } from "constance";
 import { Section, CastList, CastItem, ActorPoster, DefaultImg, ActorDescr } from "./Cast.styled";
 import DefaultImage from '../../images/DefaultImage.jpg';
 import { Wrapper } from "components/Wrapper/Wrapper.styled";
+import PropTypes from 'prop-types';
 
-export const Cast = ({cast}) => {
+export const Cast = ({ cast }) => {
     return (
         <Section>
             <Wrapper>
@@ -22,4 +23,13 @@ export const Cast = ({cast}) => {
         </Section>
         
     )
+}
+
+Cast.propTypes = {
+    cast: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        profile_path: PropTypes.string,
+        name: PropTypes.string.isRequired,
+        character: PropTypes.string.isRequired,
+    }).isRequired),
 }
